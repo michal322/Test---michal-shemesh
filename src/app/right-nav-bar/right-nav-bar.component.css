@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+}
+
+.navbar{
+  background-color: #3a3633;
+  color: #fff;
+  position: fixed;
+  flex-direction: column;
+  z-index: 1;
+  right: 0;
+  height: 100%;
+  margin-top: -6rem;
+}
+.navbar-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 210px;
+  margin: 0;
+  padding: 0;
+  z-index: 9998;
+
+  background-color: #3a3633;
+
+  list-style: none;
+}
+li{
+  margin: 0 0 1rem 0;
+}
+.ul{
+  display: flex;
+  gap: 1rem;
+}
+
