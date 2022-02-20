@@ -2,7 +2,7 @@ import { Product } from './../_models/Product';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ResponseList } from '../_models/ResponseList';
 import { ProductService } from '../_services/Product.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-lists',
   templateUrl: './lists.component.html',
@@ -19,14 +19,16 @@ export class ListsComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetProduct();
-    this.GetAllProducts()
-    this.isOpen= false;
+    this.GetAllProducts() 
     this.GetCategory();
+    this.isOpen= false;
   }
+  //hiiden new Form
   ShowForm()
   {
     this.isOpen = !this.isOpen
   }
+  // GetAllProducts
   GetAllProducts()
   {
     this.ProductService.getProducts().subscribe((p:ResponseList) => {
@@ -36,17 +38,17 @@ export class ListsComponent implements OnInit {
       console.log(err);
     })
   }
-
+  // add product
   AddProduct()
-  {
-    
-    this.Oneproduct.id=this.stringGen();
-    this.ProductService.AddProduct(this.Oneproduct)
-  
+  {  
+    this.Oneproduct.id=this.RandomID();
+    this.ProductService.AddProduct(this.Oneproduct)   
+    Swal.fire('Thank you...', 'The Product add successfully!', 'success')  
+    this.ShowForm()
   }
-  stringGen() {
-    var text = "";
-    
+  // random ID 
+  RandomID() {
+    var text = "";   
     var charset = "ABCDEFGHIJKLMNOPQRSTWXYZ0123456789";
     
     for (var i = 0; i < this.len; i++)
@@ -54,7 +56,7 @@ export class ListsComponent implements OnInit {
     
     return text
   }
-  
+  //reset new product
   resetProduct()
   {
     this.Oneproduct = {
@@ -69,14 +71,13 @@ export class ListsComponent implements OnInit {
       price:null,
     }
   }
-
-  
+  //GetAllCategory
   GetCategory(){
     this.categoryList=this.groupBy(this.ProductsList,"category");
     this.CategoriesName = Object.keys(this.categoryList);
     console.log( this.CategoriesName );
   }
-  
+  //groupBy
   groupBy (xs:any[], key:string) {
     return xs.reduce(function(rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);

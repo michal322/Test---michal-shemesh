@@ -12,9 +12,9 @@ export class RightNavBarComponent implements OnInit {
  categoryList:Product[] = [] ;
  ProductList:Product[] = [] ;
  CategoriesName:string[]=[];
-//  SortProductByPrice:Product[] = [] ;
+  SortProductByPrice:Product[] = [] ;
 
-//  SortProduct:string[]=[];
+  SortProduct:string[]=[];
   constructor( private produSer:ProductService ) { }
 
   ngOnInit(): void {
@@ -24,15 +24,13 @@ export class RightNavBarComponent implements OnInit {
       this.GetCategory();
       // this.b();
     },err =>{
-      console.log(err);
-      
+      console.log(err); 
     }) 
-
-    // console.log(this.ProductList)
   }
 
   GetCategory(){
     this.categoryList=this.groupBy(this.ProductList,"category");
+    console.log( this.categoryList)
     this.CategoriesName = Object.keys(this.categoryList);
     console.log(this.CategoriesName);
   }
@@ -43,12 +41,10 @@ export class RightNavBarComponent implements OnInit {
       return rv;
     }, {})}
   // b(){
-    // this.SortProductByPrice=this.groupBy(this.ProductList,"category");
-    // this.SortProduct =this.groupBy(this.SortProductByPrice,"price");
+  //   this.SortProductByPrice=this.groupBy(this.ProductList,"category");
+  //   this.SortProduct =this.groupBy(this.SortProductByPrice,"price");
  
-    // this.SortProduct = Object.keys(this.SortProductByPrice);
+  //   this.SortProduct = Object.keys(this.SortProductByPrice);
   //   console.log(this.SortProduct);
   // }
-
-
 }

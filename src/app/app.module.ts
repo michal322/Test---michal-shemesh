@@ -10,7 +10,6 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { HomeComponent } from './home/home.component';
 import {TableModule} from 'primeng/table';
 import { ToastrModule } from 'ngx-toastr';
 import { ListsComponent } from './lists/lists.component';
@@ -22,7 +21,6 @@ import { ProductService } from './_services/Product.service';
 @NgModule({
   declarations: [
     ListsComponent,
-    HomeComponent,
     AppComponent,
     RightNavBarComponent,
   ],
