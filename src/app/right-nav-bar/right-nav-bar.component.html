@@ -1,6 +1,14 @@
 <nav class="navbar">
-  <ul class="ul" *ngFor="let ct of this.CategoriesName ">
-    <li class="navbar-menuitem "> {{ct}}: {{this.categoryList[ct].length}}</li>
+  <ul class="ul" *ngFor="let ct of this.listOfCatAndAvg ">
+    <li class="navbar-menuitem "> {{ct.categoryName}}: {{ct.count}}</li>
   </ul> 
 </nav>
 
+<div ></div>
+
+<!-- <nav class="navbar"> -->
+  <!-- <P>{{ this.ProductList | groupBy: 'subcategory' }}</P> -->
+  <!-- <ul class="ul" *ngFor="let item of this.ProductList | groupBy: 'subcategory'"> -->
+    <!-- <li class="navbar-menuitem ">{{ this.ProductList | groupBy: 'subcategory' }} {{item}}: {{this.categoryList[item].length}}</li> -->
+  <!-- </ul>  -->
+<!-- </nav> -->

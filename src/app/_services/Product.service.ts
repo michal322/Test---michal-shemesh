@@ -18,13 +18,14 @@ export class ProductService {
   }
 
   getProducts(): Observable<ResponseList> {
-    return this.http.get<ResponseList>(this.baseUrl);
+    return this.http.get<ResponseList>(this.baseUrl) 
   }
 
-  AddProduct(product:Product){
-    this.listProducts$.subscribe( res => {
-      res.push(product)
-    } );
-  }
+  // AddProduct(product:Product){
+  //   this.listProducts$.subscribe( res => {
+  //      res.push(product)
+  //   } );
+  // }
+
 
 }

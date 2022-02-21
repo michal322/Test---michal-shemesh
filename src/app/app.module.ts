@@ -17,6 +17,7 @@ import {PaginatorModule} from 'primeng/paginator';
 import { MultiSelectModule } from "primeng/multiselect";
 import { RightNavBarComponent } from './right-nav-bar/right-nav-bar.component';
 import { ProductService } from './_services/Product.service';
+import {NgPipesModule} from 'ngx-pipes';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { ProductService } from './_services/Product.service';
     // }),
 
     TableModule,
-   
+    NgPipesModule,
   ],
   providers: [
     ProductService

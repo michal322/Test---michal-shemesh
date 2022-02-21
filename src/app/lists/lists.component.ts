@@ -11,7 +11,9 @@ import Swal from 'sweetalert2';
 export class ListsComponent implements OnInit {
   ProductsList:Product[] = [] ;
   categoryList:Product[] = [] ;
+  SubcategoryList:Product[] = [] ;
   CategoriesName:string[]=[];
+  SubCategoriesName:string[]=[];
   Oneproduct: Product ;
   isOpen:boolean
   len = 12;
@@ -20,32 +22,39 @@ export class ListsComponent implements OnInit {
   ngOnInit(): void {
     this.resetProduct();
     this.GetAllProducts() 
-    this.GetCategory();
+    this.GetSubCategory();
     this.isOpen= false;
   }
+
   //hiiden new Form
   ShowForm()
   {
     this.isOpen = !this.isOpen
   }
+
   // GetAllProducts
   GetAllProducts()
   {
     this.ProductService.getProducts().subscribe((p:ResponseList) => {
-      this.ProductsList = p.products.data.items
+      this.ProductsList = p.products.data.items;
+      this.GetCategory();
+      this.GetSubCategory();
       console.log(this.ProductsList)
     }, err => {
       console.log(err);
     })
   }
+
   // add product
   AddProduct()
   {  
     this.Oneproduct.id=this.RandomID();
-    this.ProductService.AddProduct(this.Oneproduct)   
+    // this.ProductService.AddProduct(this.Oneproduct)   
+    this.ProductsList.push(this.Oneproduct)
     Swal.fire('Thank you...', 'The Product add successfully!', 'success')  
     this.ShowForm()
   }
+
   // random ID 
   RandomID() {
     var text = "";   
@@ -56,6 +65,7 @@ export class ListsComponent implements OnInit {
     
     return text
   }
+
   //reset new product
   resetProduct()
   {
@@ -71,12 +81,20 @@ export class ListsComponent implements OnInit {
       price:null,
     }
   }
+
   //GetAllCategory
   GetCategory(){
     this.categoryList=this.groupBy(this.ProductsList,"category");
     this.CategoriesName = Object.keys(this.categoryList);
-    console.log( this.CategoriesName );
   }
+
+  //GetSubCategory
+  GetSubCategory()
+  {
+    this.SubcategoryList=this.groupBy(this.ProductsList,"subcategory");
+    this.SubCategoriesName = Object.keys(this.SubcategoryList);
+  }
+
   //groupBy
   groupBy (xs:any[], key:string) {
     return xs.reduce(function(rv, x) {

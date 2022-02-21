@@ -18,8 +18,10 @@
           <div *ngIf="name.errors?.['required']"> Opps... Name is required.</div>
           <div *ngIf="name.errors?.['minlength']">Name must be at least 4 characters long.</div></div>
       <div class="form-group">
-        <input type="text" class="form-control " name="description" id="description" [(ngModel)]="Oneproduct.description" placeholder="Description"> 
+        <input type="text" #description="ngModel" class="form-control " name="description" id="description" [(ngModel)]="Oneproduct.description" placeholder="Description" required> 
       </div>
+          <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger"> 
+          <div *ngIf="description.errors?.['required']"> Opps... Description is required.</div> </div> 
       <div class="form-group">
         <input type="text" class="form-control " name="features" id="features" [(ngModel)]="Oneproduct.features" placeholder="Features"> 
       </div>
@@ -32,20 +34,14 @@
       <div class="form-group">
         <input type="text" class="form-control " name="url" id="url" [(ngModel)]="Oneproduct.url" placeholder="Url"> 
       </div>
-
-      <div class="form-group">
-        <input type="text" class="form-control " #category="ngModel" name="category" id="category" [(ngModel)]="Oneproduct.category" placeholder="Category" required> 
+      <div>
+        <p-dropdown style="margin-bottom: 1rem !important;" name="category" [options]="CategoriesName" [(ngModel)]="Oneproduct.category" id="category" required></p-dropdown>
       </div>
-      <p-dropdown  #category="ngModel" [options]="CategoriesName" [(ngModel)]="Oneproduct.category" optionLabel="category" required=""></p-dropdown>
-
-      <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">
-          <div *ngIf="category.errors?.['required']">Opps... Category is required.</div></div>
-      <div class="form-group">
-        <input type="text" class="form-control " #subcategory="ngModel" name="subcategory" id="subcategory" [(ngModel)]="Oneproduct.subcategory" placeholder="Subcategory" required> 
-      </div>
-           <div *ngIf="subcategory.invalid && (subcategory.dirty || subcategory.touched)" class="alert alert-danger">
-               <div *ngIf="subcategory.errors?.['required']"> Opps... Subcategory is required.</div></div>
-     <button class="btn btn-success mr-2" type="submit">Submit</button>
+      <br>
+      <p-dropdown  name="subcategory" [options]="SubCategoriesName" [(ngModel)]="Oneproduct.subcategory" id="subcategory" required></p-dropdown>
+      <br>
+          
+     <button class="btn btn-success mr-2 mt-3" type="submit">Submit</button>
   </form>
 </div>
 <div class="card">
